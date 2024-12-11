@@ -1,0 +1,45 @@
+<script setup>
+import Sidebar from '@/Layouts/Menu.vue';
+import Footer from '@/Layouts/Footer.vue';
+import { Head, Link, useForm } from '@inertiajs/vue3';
+
+defineProps({
+  blogs: Object
+});
+const form = useForm({});
+</script>
+
+
+<template>
+  <Sidebar/>
+  <body class="bg-gray-100 min-h-screen">
+    <h1 class="text-3xl font-bold  p-4 text-center mb-6">Tin tức mới nhất</h1>
+    <section class="parent-section">
+        <div v-for="(item, index) in blogs" :key="index" class="card flex flex-col lg:flex-row mx-4 md:mx-10 lg:mx-52 mb-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+            <img :src="'/images/'+ item.images" alt="thumbnail" class="thumbnail mx-auto lg:mx-0 lg:mr-4 rounded-t-lg lg:rounded-l-lg lg:rounded-t-none object-cover h-60 lg:h-64 w-full lg:w-1/2">
+            <div class="card-details flex flex-col p-6">
+                <div class="top flex flex-row justify-between mb-4 text-gray-500">
+                    <div class="tag bg-blue-200 px-2 py-1 rounded-md">{{ item.tag }}</div>
+                    <div class="date">{{ item.date }}</div>
+                </div>
+                <div class="middle mb-4">
+                    <h2 class="title text-2xl font-bold mb-2 text-gray-800">{{ item.name }}</h2>
+                    <p class="excerpt text-gray-700">{{ item.description }}</p>
+                </div>
+                <div class="bottom flex justify-between items-center mt-auto">
+                    <div class="author flex items-center">
+                        <img :src="'/images/users.png'" alt="profile pic" class="w-10 h-10 rounded-full">
+                        <p class="name mx-2 font-bold text-gray-800">Khang</p>
+                    </div>
+                    <div class="readmore text-sky-600 cursor-pointer hover:underline">
+                        Read more...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+    <Footer/>
+  </template>
+  
